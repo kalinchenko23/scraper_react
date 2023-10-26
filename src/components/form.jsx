@@ -19,19 +19,18 @@ function Form() {
     }
 
     const SendDataTofastAPI = async (data) => {
-    const response = await fetch('http://127.0.0.1:8000/retreive_message', {
-            method: 'POST',
-            node: 'no-cors',
-            headers: {
-            'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        }).then(response => response.json())
-        .then(data => data => {setResponce_data({data})})
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    };
+        const response = await fetch('http://127.0.0.1:8000/retreive_message', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(response => response.json())
+            .then(data => {setResponce_data({data})}, console.log({responce_data}.responce_data) )
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        };
     
     let form = <form className="querry" onSubmit={handleSubmit}>
         <div className='form-row'>
@@ -47,17 +46,13 @@ function Form() {
         </button>
 
     </form>
+    return(
+        <div>
+        { responce_data.responce_data != '' ? <Paragraph/>: form}
+        </div>  
+    )
 
-    if (responce_data=='') {
-        return form
-    } else {
-        return (<p>Yooooooo</p>)
     }
-    
-    }
-
-export default Form; 
-
 
 
 
@@ -72,3 +67,5 @@ function Paragraph(){
 
 
 }
+
+export default Form

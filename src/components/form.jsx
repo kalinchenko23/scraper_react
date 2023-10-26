@@ -48,20 +48,19 @@ function Form() {
     </form>
     return(
         <div>
-        { responce_data.responce_data != '' ? <Paragraph/>: form}
+
+
+        {responce_data != '' ? <Paragraph responce_data = {responce_data}/>: form} 
         </div>  
     )
 
     }
 
-
-
-
-
-function Paragraph(){
+function Paragraph(props){
     return(
+     
         <p>
-            Yooooooooo
+           {props.responce_data.data}
         </p>
     )
 
